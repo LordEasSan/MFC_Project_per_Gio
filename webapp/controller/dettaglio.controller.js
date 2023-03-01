@@ -21,7 +21,7 @@ sap.ui.define([
             _onObjectMatched: function (oEvent) {
 
                 var sObjectId = oEvent.getParameter("arguments").selectedobj;
-                this.getView().bindElement({ path: "/flussi/" + sObjectId, model: "flussiModel" });
+                this.getView().bindElement({ path: "/Anagrafica_Utenti/" + sObjectId});
 
             },
 

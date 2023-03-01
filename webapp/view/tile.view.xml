@@ -50,27 +50,7 @@
             </Panel>
         </content>
         <!-- flussi in errore -->
-        <content>
-            <Panel width="auto" class="sapUiResponsiveMargin">
-                <headerToolbar>
-                    <OverflowToolbar height="3rem">
-                        <Title text="Flussi in Errore" />
-                        <ToolbarSpacer />
-                    </OverflowToolbar>
-                </headerToolbar>
-
-                <layout:HorizontalLayout allowWrapping="true" content="{path: '/Anagrafica_Flussi'}">
-                    <GenericTile header="{NOME_FLUSSO}" subheader="" class="bgRed sapUiTinyMargin" press="vaiAlDettaglio">
-                        <!-- visible="{= ${flussiModel>stato} ? false : true}" -->
-                        <tileContent>
-                            <TileContent unit="" footer="">
-                                <!-- <ImageContent src="{= ${flussiModel>stato} ? 'sap-icon://accept' : 'sap-icon://error'}" /> -->
-                            </TileContent>
-                        </tileContent>
-                    </GenericTile>
-                </layout:HorizontalLayout>
-            </Panel>
-        </content>
+       
         <!-- flussi ok -->
         <!-- <content>
             <Panel width="auto" class="sapUiResponsiveMargin">

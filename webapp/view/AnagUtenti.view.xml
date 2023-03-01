@@ -1,7 +1,7 @@
 <mvc:View height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="tileproject.tileproject.controller.AnagUtenti" xmlns:semantic="sap.m.semantic" displayBlock="true" xmlns:f="sap.ui.layout.form">
     <SplitContainer>
         <masterPages>
-            <semantic:MasterPage title="Utenti" id="semanticMasterPage" visible="true" enableScrolling="true">
+            <semantic:MasterPage title="Utenti ({/Anagrafica_Utenti/$count})" id="semanticMasterPage" visible="true" enableScrolling="true">
                 <List id="list" items="{
                     path: '/Anagrafica_Utenti',
                     sorter: {
@@ -13,7 +13,7 @@
                         <OverflowToolbar>
                             <content>
                                 <ToolbarSpacer />
-                                <SearchField id="searchField" width="70%" placeholder="searchfield" search="onSearch" />
+                                <SearchField id="searchField" width="70%" placeholder="searchfield" search="onSearchRuolo" />
                                 <!-- <Button
 											id="refreshUsersButton"
 											icon="sap-icon://refresh"
@@ -79,22 +79,22 @@
                 >
                     <f:content>
                         <Label text="id" />
-                        <Input id="id" value="{ID_UTENTE}" editable="false" />
+                        <Input id="id" value="{ID_UTENTE}" editable="false" valueState="" />
 
                         <Label text="cognome" />
-                        <Input id="cognome" value="{COGNOME_UTENTE}" editable="false" />
+                        <Input id="cognome" value="{COGNOME_UTENTE}" editable="false" valueState="" />
 
                         <Label text="nome" />
-                        <Input id="nome" value="{NOME_UTENTE}" editable="false" />
+                        <Input id="nome" value="{NOME_UTENTE}" editable="false" valueState=""/>
 
                         <Label text="ruolo" />
-                        <Input id="ruolo" value="{ path: 'ID_RUOLO', formatter: '.formatter.idRuoloToString' }" editable="false" />
+                        <Input id="ruolo" value="{ path: 'ID_RUOLO', formatter: '.formatter.idRuoloToString' }" editable="false" valueState="" />
 
                         <Label text="email" />
-                        <Input id="email" value="{EMAIL_UTENTE}" editable="false" />
+                        <Input id="email" value="{EMAIL_UTENTE}" editable="false" valueState="" />
 
                         <Label text="telefono" />
-                        <Input id="telefono" value="{TELEFONO_UTENTE}" editable="false" />
+                        <Input id="telefono" value="{TELEFONO_UTENTE}" editable="false" valueState=""/>
                     </f:content>
                 </f:SimpleForm>
 
@@ -119,23 +119,23 @@
                     visible="false"
                 >
                     <f:content>
-                        <Label text="id" />
-                        <Input id="idAdd" />
+                      <!--  <Label text="id" />
+                        <Input id="idAdd" /> -->
 
                         <Label text="cognome" />
-                        <Input id="cognomeAdd" />
+                        <Input id="cognomeAdd" valueState="" />
 
                         <Label text="nome" />
-                        <Input id="nomeAdd" />
+                        <Input id="nomeAdd" valueState=""/>
 
                         <Label text="ruolo" />
-                        <Input id="ruoloAdd" />
+                        <Input id="ruoloAdd" valueState="" />
 
                         <Label text="email" />
-                        <Input id="emailAdd" />
+                        <Input id="emailAdd" valueState="" />
 
                         <Label text="telefono" />
-                        <Input id="telefonoAdd" />
+                        <Input id="telefonoAdd" valueState="" />
                     </f:content>
                 </f:SimpleForm>
                
@@ -148,7 +148,7 @@
 
                     <OverflowToolbarButton icon="sap-icon://add" id="saveAddAddBtn" press="saveAddAdd" visible="false" />
 
-                    <OverflowToolbarButton icon="sap-icon://save" id="saveBtn" press="save" visible="false" />
+                    <OverflowToolbarButton icon="sap-icon://save" id="saveBtn" press="saveAddAdd" visible="false" />
 
                     <OverflowToolbarButton icon="sap-icon://edit" id="editBtn" press="edit" visible="true" />
 

@@ -11,10 +11,7 @@ sap.ui.define([
         return Controller.extend("tileproject.tileproject.controller.tile", {
             onInit: function () {
 
-                var dataModel = this.getOwnerComponent().getModel("model/flussi.json");
-                this.getView().setModel(dataModel, "flussiModel");
-             
-
+                
             },
             getRouter: function () {
                 return UIComponent.getRouterFor(this);

@@ -16,8 +16,8 @@ server:
             - /test-resources
           url: https://ui5.sap.com
         backend:
-          - path: /catalog
-            url: https://1afadbf9trial-dev-mfc1-srv.cfapps.us10-001.hana.ondemand.com/
+          - path: /CatalogService
+            url: https://1afadbf9trial-dev-mfcshare-srv.cfapps.us10-001.hana.ondemand.com/
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -29,7 +29,7 @@ server:
       configuration:
         mountPath: /
         services:
-          - urlPath: /catalog
+          - urlPath: /CatalogService
             metadataPath: ./webapp/localService/metadata.xml
             mockdataPath: ./webapp/localService/data
             generateMockData: true

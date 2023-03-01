@@ -116,17 +116,117 @@ sap.ui.define([
         },
 
         saveAddAdd: function (oEvent) {
-            var id = parseInt(this.getView().byId("idAdd").getValue());
-            var cognome = this.getView().byId("cognomeAdd").getValue();
-            var nome = this.getView().byId("nomeAdd").getValue();
-            var ruolo = parseInt(this.getView().byId("ruoloAdd").getValue());
-            var email = this.getView().byId("emailAdd").getValue();
-            var telefono = this.getView().byId("telefonoAdd").getValue();
+            //var id = parseInt(this.getView().byId("idAdd").getValue());
+            var cognome = this.getView().byId("cognome").getValue();
+            var nome = this.getView().byId("nome").getValue();
+            var ruolo = parseInt(this.getView().byId("ruolo").getValue());
+            var email = this.getView().byId("email").getValue();
+            var telefono = this.getView().byId("telefono").getValue();
 
+            var ruoloArrayValidation = ["Admin","Technical","Consumer"] 
+
+            if(ruolo === ruoloArrayValidation[0] ){
+                var ruolo = this.getView().byId("ruolo").setValue("1");
+            }
+            if(ruolo === ruoloArrayValidation[1] ){
+                var ruolo = this.getView().byId("ruolo").setValue("2");
+            }
+            if(ruolo === ruoloArrayValidation[2] ){
+                var ruolo = this.getView().byId("ruolo").setValue("3");
+            }
+
+           // if(ruolo !== ruoloArrayValidation[0] || ruoloArrayValidation[1] || ruoloArrayValidation[2] || "1" 
+           // || "2"|| "3" ){
+           //     alert("Scelta del ruolo non corretta. Scegliere tra 'Admin' 'Technical' 'Consumer'")
+           // }
+
+            if(nome === "" || cognome === "" || ruolo === "" || email === "" || telefono === "" )
+            {
+                this.getView().byId("nome").setValueState("Error");
+               
+                this.getView().byId("cognome").setValueState("Error");
+                
+                this.getView().byId("ruolo").setValueState("Error");
+
+                this.getView().byId("email").setValueState("Error");
+
+                this.getView().byId("telefono").setValueState("Error");
+            }
+
+            if(nome != "" )
+            {
+                this.getView().byId("nome").setValueState("None");
+            }
+            if(cognome != "" )
+            {
+                this.getView().byId("cognome").setValueState("None");
+            }
+            if(ruolo != "" )
+            {
+                this.getView().byId("ruolo").setValueState("None");
+            }
+            if(email != "" )
+            {
+                this.getView().byId("email").setValueState("None");
+            }
+            if(telefono != "" )
+            {
+                this.getView().byId("telefono").setValueState("None");
+            }
+
+            var arrayValidation = [];
+
+            if(nome.length > 30){
+
+                this.getView().byId("nome").setValueState("Error");
+                MessageToast.show("La lunghezza del nome non può essere maggiore a 30 caratteri")
+
+            }else  {
+                arrayValidation.push(true);
+            }
+            if(cognome.length > 40){
+
+                this.getView().byId("cognome").setValueState("Error");
+                MessageToast.show("La lunghezza del cognome non può essere maggiore a 40 caratteri")
+                
+            }else  {
+                arrayValidation.push(true);
+            }
+            if(ruolo.length > 10){
+
+                this.getView().byId("ruolo").setValueState("Error");
+                MessageToast.show("La lunghezza del ruolo non può essere maggiore a 10 caratteri")
+                
+            }else  {
+                arrayValidation.push(true);
+            }
+            if(email.length > 30){
+
+                this.getView().byId("email").setValueState("Error");
+                MessageToast.show("La lunghezza dell'email non può essere maggiore a 30 caratteri")
+                
+            }else  {
+                arrayValidation.push(true);
+            }
+            if(telefono.length > 30){
+
+                this.getView().byId("telefono").setValueState("Error");
+                MessageToast.show("La lunghezza del telefono non può essere maggiore a 30 caratteri")
+                
+            }else  {
+                arrayValidation.push(true);
+            }
+
+
+
+            
+        
+        
+            if(arrayValidation.length === 4){
 
             var oContext = this.getView().byId("list").getBinding("items")
                 .create({
-                    ID_UTENTE: id,
+                   // ID_UTENTE: id,
                     COGNOME_UTENTE: cognome,
                     NOME_UTENTE: nome,
                     EMAIL_UTENTE: email,
@@ -158,13 +258,14 @@ sap.ui.define([
                 this.byId("ruoloAdd").setValue(""),
                 this.byId("emailAdd").setValue(""),
                 this.byId("telefonoAdd").setValue("")
+        }
         },
 
         saveAddQuit: function (params) {
-            var id = parseInt(this.getView().byId("idAdd").getValue());
+            //var id = parseInt(this.getView().byId("idAdd").getValue());
             var cognome = this.getView().byId("cognomeAdd").getValue();
             var nome = this.getView().byId("nomeAdd").getValue();
-            var ruolo = parseInt(this.getView().byId("ruoloAdd").getValue());
+            var ruolo = this.getView().byId("ruoloAdd").getValue();
             var email = this.getView().byId("emailAdd").getValue();
             var telefono = this.getView().byId("telefonoAdd").getValue();
 
@@ -218,7 +319,7 @@ sap.ui.define([
         },
 
         edit: function () {
-            this.byId("id").setProperty("editable", true);
+            //this.byId("id").setProperty("editable", true);
             this.byId("cognome").setProperty("editable", true);
             this.byId("nome").setProperty("editable", true);
             this.byId("ruolo").setProperty("editable", true);
@@ -380,7 +481,23 @@ sap.ui.define([
                 });
             }
             oBinding.filter(oFilter);
+            this.getView().getModel().refresh();
         },
+        onSearchRuolo: function (oEvt) {
+            var sQuery = oEvt.getParameter("query"),
+                aFilter = [new Filter("ID_RUOLO", FilterOperator.EQ, sQuery)],
+                oTable = this.byId("semanticMasterPage"),
+                oBinding = oTable.getBinding("items"),
+                oFilter = null;
+            if (sQuery.length != 0) {
+                oFilter = new Filter({
+                    filters: aFilter,
+                    and: false
+                });
+            }
+            oBinding.filter(oFilter);
+            this.getView().getModel().refresh();
+        }
 
 
 
